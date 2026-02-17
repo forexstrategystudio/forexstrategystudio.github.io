@@ -1,13 +1,652 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Forex Strategy Studio</title>
-</head>
-<body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding: 40px;">
-  <h1>Forex Strategy Studio</h1>
-  <p>GitHub Pages is live ✅</p>
-  <p><a href="https://www.forexstrategystudio.com">Visit the main site</a></p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+
+    <title>
+      Forex Strategy Studio - No-code strategy builder, backtester, export to MQL5
+    </title>
+    <meta
+      name="description"
+      content="Forex Strategy Studio is a mobile-first no-code strategy builder and on-device backtester. Export real MQL5 code and run your strategies in MetaTrader 5."
+    />
+
+    <meta
+      name="keywords"
+      content="forex strategy builder, no-code EA builder, MQL5 export, MetaTrader 5 expert advisor generator, EA Builder alternative, ForexSB alternative, StrategyQuant alternative"
+    />
+
+    <link rel="canonical" href="https://forexstrategystudio.github.io/" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta
+      name="googlebot"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <meta property="og:site_name" content="Forex Strategy Studio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://forexstrategystudio.github.io/" />
+    <meta
+      property="og:title"
+      content="Forex Strategy Studio - No-code strategy builder + backtester"
+    />
+    <meta
+      property="og:description"
+      content="Build strategies without coding, backtest on-device, export real MQL5, and execute in MetaTrader 5."
+    />
+    <meta
+      property="og:image"
+      content="https://forexstrategystudio.github.io/assets/images/foexstrategystudio_banner.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Forex Strategy Studio - no-code strategy builder and backtester"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Forex Strategy Studio - No-code strategy builder + backtester"
+    />
+    <meta
+      name="twitter:description"
+      content="Build strategies without coding, backtest on-device, export real MQL5, and execute in MetaTrader 5."
+    />
+    <meta
+      name="twitter:image"
+      content="https://forexstrategystudio.github.io/assets/images/foexstrategystudio_banner.png"
+    />
+
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any" />
+
+    <link rel="preload" as="image" href="assets/images/github_banner.png" />
+
+    <!-- Font: Montserrat (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;650;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Dark-first. Keep it simple: black base, subtle surfaces. */
+        --bg: #000000;
+        --card: #0b0b0c;
+        --text: #f2f2f2;
+        --muted: #b8b8b8;
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+        --radius: 14px;
+        --max: 1000px;
+
+        --cta-bg: #161616;
+        --cta-bg-hover: #1e1e1e;
+        --cta-border: rgba(255, 255, 255, 0.18);
+        --cta-primary: #b4a272;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #ffffff;
+          --card: #ffffff;
+          --text: #0b0b0c;
+          --muted: #4b5565;
+          --border: rgba(11, 11, 12, 0.12);
+          --shadow: 0 18px 45px rgba(2, 6, 23, 0.12);
+          --cta-bg: #f2f2f2;
+          --cta-bg-hover: #eaeaea;
+          --cta-border: rgba(11, 11, 12, 0.16);
+          --cta-primary: #b4a272;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Montserrat, ui-sans-serif, system-ui, -apple-system,
+          Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        line-height: 1.55;
+        color: var(--text);
+        background: var(--bg);
+        font-weight: 400;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.35);
+        text-underline-offset: 3px;
+      }
+
+      a:hover {
+        text-decoration-color: rgba(255, 212, 121, 0.8);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 8px;
+        padding: 10px 12px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        z-index: 999;
+      }
+
+      .skip-link:focus {
+        left: 8px;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 18px 42px;
+      }
+
+      header.hero {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .banner {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-inner {
+        padding: 18px 18px 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        font-weight: 600;
+      }
+
+      .tagline {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        color: var(--muted);
+        font-weight: 450;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+        align-items: center;
+      }
+
+      /* Image-based CTA badges */
+      .cta-badge {
+        display: inline-block;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        text-decoration: none;
+        line-height: 0;
+        transition: transform 140ms ease;
+      }
+
+      .cta-badge:hover {
+        transform: translateY(-1px);
+      }
+
+      .cta-badge:active {
+        transform: translateY(0);
+      }
+
+      .cta-badge img {
+        height: 46px;
+        width: auto;
+        display: block;
+        filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.55));
+        transition: filter 140ms ease;
+      }
+
+      .cta-badge:hover img {
+        filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.65));
+      }
+
+      /* Image badge sizing overrides for your local assets */
+      .cta-badge img.badge-play {
+        height: 46px;
+      }
+
+      .cta-badge img.badge-youtube {
+        height: 46px;
+      }
+
+      .cta-badge img.badge-github {
+        height: 35px;
+      }
+
+      @media (max-width: 520px) {
+        .cta-row {
+          align-items: stretch;
+        }
+        .cta-badge {
+          width: 100%;
+        }
+        .cta-badge img {
+          margin: 0 auto;
+        }
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      @media (min-width: 820px) {
+        .grid {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+        letter-spacing: -0.01em;
+        font-weight: 350;
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+        font-weight: 350;
+      }
+
+      ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+      }
+
+      li {
+        margin: 7px 0;
+      }
+
+      strong {
+        color: var(--cta-primary);
+        font-weight: 350;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .video {
+        display: grid;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .video a {
+        display: inline-block;
+      }
+
+      .video img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        padding: 0 4px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .pill {
+        border: 1px solid var(--border);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+    </style>
+
+    <!-- Structured data for Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "Forex Strategy Studio",
+            "url": "https://forexstrategystudio.github.io/"
+          },
+          {
+            "@type": "Organization",
+            "name": "Forex Strategy Studio",
+            "url": "https://forexstrategystudio.github.io/",
+            "sameAs": [
+              "https://www.youtube.com/@ForexStrategyStudio/videos",
+              "https://github.com/forexstrategystudio"
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Forex Strategy Studio",
+            "operatingSystem": "Android",
+            "applicationCategory": "FinanceApplication",
+            "description": "Mobile-first no-code strategy builder and on-device backtester. Export MQL5 and execute in MetaTrader 5.",
+            "url": "https://forexstrategystudio.github.io/",
+            "installUrl": "https://play.google.com/store/apps/details?id=com.visualstrategystudio"
+          }
+        ]
+      }
+    </script>
+
+    <!-- FAQ structured data (targets common comparison searches) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Forex Strategy Studio a forex strategy builder?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Forex Strategy Studio is a no-code forex strategy builder with on-device backtesting. You can export strategies as real MQL5 code and run them in MetaTrader 5."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Forex Strategy Studio vs EA Builder (eabuilder.com): what is different?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "EA Builder and Forex Strategy Studio both help you create automated trading strategies without writing code. Forex Strategy Studio is mobile-first, includes on-device backtesting, and focuses on exporting clean MQL5 code to run in MetaTrader 5."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Forex Strategy Studio vs Forex Strategy Builder (ForexSB / forexsb.com): what is different?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you're comparing Forex strategy builder tools (including ForexSB), Forex Strategy Studio prioritizes a mobile-first workflow, strategy templates, and exporting real MQL5 Expert Advisors for MetaTrader 5, with backtesting directly on the device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Forex Strategy Studio vs StrategyQuant / StrategyQuant X: what is different?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "StrategyQuant/StrategyQuantX are often used for large-scale strategy generation and optimization on desktop. Forex Strategy Studio is designed for quickly building and testing strategies on mobile, then exporting MQL5 for MetaTrader 5 execution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Forex Strategy Studio generate Expert Advisors for MetaTrader 5?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Forex Strategy Studio exports real MQL5 code that can be compiled and used as a MetaTrader 5 Expert Advisor (EA)."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="wrap">
+      <header class="hero" role="banner">
+        <img
+          class="banner"
+          src="assets/images/github_banner.png"
+          alt="Forex Strategy Studio - The way trading was meant to be"
+          loading="eager"
+        />
+        <div class="hero-inner">
+          <!-- Keep an H1 for SEO, but hide it visually (banner already contains the title). -->
+          <h1 class="sr-only">Forex Strategy Studio</h1>
+          <p class="tagline">
+            No-code Strategy Builder · On-device Backtester · Export to MQL5 ·
+            Execute in MetaTrader
+          </p>
+
+          <div class="cta-row" aria-label="Primary links">
+            <a
+              class="cta-badge"
+              href="https://play.google.com/store/apps/details?id=com.visualstrategystudio"
+              rel="noopener"
+              aria-label="Get it on Google Play"
+            >
+              <img
+                class="badge-play"
+                src="assets/images/google_play.png"
+                alt="Get it on Google Play"
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              class="cta-badge"
+              href="https://www.youtube.com/@ForexStrategyStudio/videos"
+              rel="noopener"
+              aria-label="Watch on YouTube"
+            >
+              <img
+                class="badge-youtube"
+                src="assets/images/youtube.png"
+                alt="Watch on YouTube"
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              class="cta-badge"
+              href="https://github.com/forexstrategystudio"
+              rel="noopener"
+              aria-label="View on GitHub"
+            >
+              <img
+                class="badge-github"
+                src="assets/images/GitHub_Lockup_White.png"
+                alt="View on GitHub"
+                loading="lazy"
+              />
+            </a>
+          </div>
+
+          <div class="pill-row" aria-label="Highlights">
+            <span class="pill">Strategy builder</span>
+            <span class="pill">Backtesting</span>
+            <span class="pill">MQL5 export</span>
+            <span class="pill">MetaTrader 5</span>
+          </div>
+        </div>
+      </header>
+
+      <main id="main" class="grid" role="main">
+        <section class="card" aria-labelledby="features">
+          <h2 id="features">Trading the way it was meant to be</h2>
+          <ul>
+            <li>
+              <strong>No-code strategy builder</strong> with industry-standard
+              indicators (EMA, RSI, MACD, Stochastic and more), math, logic and
+              converters.
+            </li>
+            <li>
+              <strong>Export real MQL5 code</strong> and run it inside
+              <strong>MetaTrader 5</strong>.
+            </li>
+            <li>
+              <strong>Advanced on-device backtesting</strong> with historical
+              Forex data.
+            </li>
+            <li>
+              <strong>Professional metrics &amp; reports</strong>: win rate,
+              expectancy, drawdown, profit factor and more.
+            </li>
+            <li>
+              <strong>Mobile-first</strong>: builder + backtester right on your
+              phone.
+            </li>
+            <li>
+              <strong>Strategy templates</strong> out of the box (RSI
+              overbought/oversold, EMA crossover, stochastic trend detection,
+              multi-indicator confirmation).
+            </li>
+          </ul>
+
+          <div class="video" aria-label="Overview video">
+            <p class="muted" style="margin: 14px 0 0">
+              Overview video:
+              <a href="https://youtu.be/NY-TS1A0nCw" rel="noopener">NY-TS1A0nCw</a>
+            </p>
+            <a href="https://youtu.be/NY-TS1A0nCw" rel="noopener">
+              <img
+                src="https://img.youtube.com/vi/NY-TS1A0nCw/maxresdefault.jpg"
+                alt="Forex Strategy Studio - Overview video preview"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <aside class="card" aria-labelledby="repo">
+          <h2 id="repo">What this GitHub org publishes</h2>
+          <p class="muted" style="margin: 0">
+            Use the Forex Strategy Studio Android app to build strategies without
+            coding, then use the resources in GitHub to integrate, extend,
+            automate, and deploy cleanly.
+          </p>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/forexstrategystudio/mql5-expert-advisors"
+                target="_blank"
+                rel="noopener"
+              >
+                Sample exported MQL5 strategies
+              </a>
+              (Expert Advisors) created in the app.
+            </li>
+            <li>
+              <strong>Forex AI agent</strong> with REST API, plus MQL5 bridge
+              utilities to call the agent from MetaTrader 5 EAs.
+            </li>
+            <li>
+              <strong>MetaTrader MCP/API server</strong> (used by the Forex AI
+              Agent).
+            </li>
+            <li>
+              <strong>MQL5 utilities</strong> (helpers, templates, HTTP/JSON
+              glue).
+            </li>
+            <li><strong>Python/Node.js utilities</strong>.</li>
+          </ul>
+
+          <h3 style="margin-top: 16px">Support &amp; community</h3>
+          <ul>
+            <li>
+              YouTube walkthroughs:
+              <a
+                href="https://www.youtube.com/@ForexStrategyStudio/videos"
+                target="_blank"
+                rel="noopener"
+              >
+                @ForexStrategyStudio
+              </a>
+            </li>
+            <li>Issues / feature requests: open an issue in the relevant repo</li>
+            <li>PRs welcome: docs improvements, utilities, examples, bug fixes</li>
+          </ul>
+
+          <h3 style="margin-top: 16px">Disclaimers</h3>
+          <ul>
+            <li>Educational tooling only - <strong>not financial advice</strong>.</li>
+            <li>Trading involves risk; you can lose money.</li>
+            <li>Backtests do not guarantee future performance.</li>
+            <li>
+              You are responsible for compliance with your broker/platform/local
+              regulations.
+            </li>
+          </ul>
+        </aside>
+      </main>
+
+      <footer>
+        <p style="margin: 16px 0 0">
+          © <span id="y"></span> Forex Strategy Studio. Links: 
+          <a href="https://play.google.com/store/apps/details?id=com.visualstrategystudio" rel="noopener">Google Play</a>
+          · <a href="https://www.youtube.com/@ForexStrategyStudio/videos" rel="noopener">YouTube</a>
+          · <a href="https://github.com/forexstrategystudio" rel="noopener">GitHub</a>
+          · <a href="https://www.forexstrategystudio.com" rel="noopener">Website</a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // Tiny enhancement: keep copyright year current.
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
